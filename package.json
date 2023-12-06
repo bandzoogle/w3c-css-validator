@@ -7,6 +7,10 @@
 	"files": [
 		"dist/"
 	],
+	"browser": {
+		"https": false,
+		"util": false
+	},
 	"scripts": {
 		"dev": "yarn install --frozen-lockfile && yarn compile && yarn --cwd ./website install --frozen-lockfile",
 		"test": "jest && rugged",
