@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import validateOptions from '../validate-options';
 import retrieveInBrowser from './browser';
-import retrieveInNode from './node';
 import processParameters from './process-parameters';
 const retrieveValidation = (method, unprocessedParameters, timeout) => __awaiter(void 0, void 0, void 0, function* () {
     validateOptions({
@@ -18,9 +17,6 @@ const retrieveValidation = (method, unprocessedParameters, timeout) => __awaiter
         warningLevel: unprocessedParameters.warningLevel,
     });
     const parameters = processParameters(method, unprocessedParameters);
-    if (typeof window !== 'undefined' && typeof (window === null || window === void 0 ? void 0 : window.fetch) === 'function') {
-        return yield retrieveInBrowser(method, parameters, timeout);
-    }
-    return yield retrieveInNode(method, parameters, timeout);
+    return yield retrieveInBrowser(method, parameters, timeout);
 });
 export default retrieveValidation;

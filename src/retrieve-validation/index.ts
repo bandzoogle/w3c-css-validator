@@ -2,7 +2,7 @@
 import { Parameters } from '../types/parameters';
 import validateOptions from '../validate-options';
 import retrieveInBrowser from './browser';
-import retrieveInNode from './node';
+// import retrieveInNode from './node';
 import processParameters from './process-parameters';
 
 // Define types
@@ -40,12 +40,10 @@ const retrieveValidation = async (
 	const parameters = processParameters(method, unprocessedParameters);
 
 	// Retrieve response in browser environments
-	if (typeof window !== 'undefined' && typeof window?.fetch === 'function') {
-		return await retrieveInBrowser(method, parameters, timeout);
-	}
+	return await retrieveInBrowser(method, parameters, timeout);
 
 	// Retrieve response in Node.js environments
-	return await retrieveInNode(method, parameters, timeout);
+	// return await retrieveInNode(method, parameters, timeout);
 };
 
 export default retrieveValidation;
